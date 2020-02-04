@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Schedule Table</title>
+    <link rel="stylesheet" href="reset.css">
+    <!-- Added link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Added a link to our external stylesheet-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Work Day Scheduler</h1>
+        <br>
+        <p>A simple calendar for scheduling your work day </p>
+        <p>Thursday-September 5th</p>
+        <hr>
+        <br>
+        <div class="row">
+            <div class="col-lg-1 time">
+                9AM
+            </div>
+            <input class="input col-lg-10", type="text">
+            <button class="saveButt col-lg-1"></button>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 time">
+                10AM
+            </div>
+            <input class="input col-lg-10", type="text">
+            <button class="saveButt col-lg-1"></button>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 time">
+                11AM
+            </div>
+            <input class="input col-lg-10", type="text">
+            <button class="saveButt col-lg-1"></button>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 time">
+                12AM
+            </div>
+            <input class="input col-lg-10", type="text">
+            <button class="saveButt col-lg-1"></button>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 time">
+                1PM
+            </div>
+            <input class="input col-lg-10", type="text">
+            <button class="saveButt col-lg-1"></button>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 time">
+                2PM
+            </div>
+            <input class="input col-lg-10", type="text">
+            <button class="saveButt col-lg-1"></button>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 time">
+                3PM
+            </div>
+            <input class="input col-lg-10", type="text">
+            <button class="saveButt col-lg-1"></button>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 time">
+                4PM
+            </div>
+            <input class="input col-lg-10", type="text">
+            <button class="saveButt col-lg-1"></button>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 time">
+                5PM
+            </div>
+            <input class="input col-lg-10", type="text">
+            <button class="saveButt col-lg-1"></button>
+        </div>
+        <br><br><br> 
+    </div> 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".saveButt").on("click", function(){
+                var saveJob= localStorage.getItem("saveJob");
+                saveJob =$(this).prev().val();
+               // console.log(input);
+               localStorage.setItem("saveJob", saveJob);
+            })
+        })
+    </script>    
+</body>
+</html>

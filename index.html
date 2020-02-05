@@ -18,81 +18,290 @@
         <h1>Work Day Scheduler</h1>
         <br>
         <p>A simple calendar for scheduling your work day </p>
-        <p>Thursday-September 5th</p>
+        <p id="date"></p>
         <hr>
         <br>
         <div class="row">
-            <div class="col-lg-1 time">
+            <div  class="col-lg-1 time">
                 9AM
             </div>
-            <input class="input col-lg-10", type="text">
-            <button class="saveButt col-lg-1"></button>
+            <input id="input9" class="input col-lg-10", type="text">
+            <button id="saveButt1" class="saveButt col-lg-1">save</button>
         </div>
         <div class="row">
-            <div class="col-lg-1 time">
+            <div class="time col-lg-1 ">
                 10AM
             </div>
-            <input class="input col-lg-10", type="text">
-            <button class="saveButt col-lg-1"></button>
+            <input id="input10" class="input col-lg-10", type="text">
+            <button id="saveButt2" class="saveButt col-lg-1">save</button>
         </div>
         <div class="row">
             <div class="col-lg-1 time">
                 11AM
             </div>
-            <input class="input col-lg-10", type="text">
-            <button class="saveButt col-lg-1"></button>
+            <input id="input11" class="input col-lg-10", type="text">
+            <button id="saveButt3" class="saveButt col-lg-1">save</button>
         </div>
         <div class="row">
             <div class="col-lg-1 time">
                 12AM
             </div>
-            <input class="input col-lg-10", type="text">
-            <button class="saveButt col-lg-1"></button>
+            <input id="input12" class="input col-lg-10", type="text">
+            <button id="saveButt4" class="saveButt col-lg-1">save</button>
         </div>
         <div class="row">
             <div class="col-lg-1 time">
                 1PM
             </div>
-            <input class="input col-lg-10", type="text">
-            <button class="saveButt col-lg-1"></button>
+            <input id="input13" class="input col-lg-10", type="text">
+            <button id="saveButt5" class="saveButt col-lg-1">save</button>
         </div>
         <div class="row">
             <div class="col-lg-1 time">
                 2PM
             </div>
-            <input class="input col-lg-10", type="text">
-            <button class="saveButt col-lg-1"></button>
+            <input id="input14" class="input col-lg-10", type="text">
+            <button id="saveButt6" class="saveButt col-lg-1">save</button>
         </div>
         <div class="row">
             <div class="col-lg-1 time">
                 3PM
             </div>
-            <input class="input col-lg-10", type="text">
-            <button class="saveButt col-lg-1"></button>
+            <input id="input15" class="input col-lg-10", type="text">
+            <button id="saveButt7" class="saveButt col-lg-1">save</button>
         </div>
         <div class="row">
             <div class="col-lg-1 time">
                 4PM
             </div>
-            <input class="input col-lg-10", type="text">
-            <button class="saveButt col-lg-1"></button>
+            <input id="input16" class="input col-lg-10", type="text">
+            <button id="saveButt8" class="saveButt col-lg-1">save</button>
         </div>
         <div class="row">
             <div class="col-lg-1 time">
                 5PM
             </div>
-            <input class="input col-lg-10", type="text">
-            <button class="saveButt col-lg-1"></button>
+            <input id="input17" class="input col-lg-10", type="text">
+            <button id="saveButt9" class="saveButt col-lg-1">save</button>
         </div>
-        <br><br><br> 
+        <br> 
+        <div class="row">
+            <button id="clear" class="saveButt col-lg-2">clear</button>
+        </div>
+        <br><br>
     </div> 
+
     <script type="text/javascript">
+        var saveJob=["","","","","","","","",""];
+        saveJob[0]= localStorage.getItem("saveJob0");
+        saveJob[1]= localStorage.getItem("saveJob1");
+        saveJob[2]= localStorage.getItem("saveJob2");
+        saveJob[3]= localStorage.getItem("saveJob3");
+        saveJob[4]= localStorage.getItem("saveJob4");
+        saveJob[5]= localStorage.getItem("saveJob5");
+        saveJob[6]= localStorage.getItem("saveJob6");
+        saveJob[7]= localStorage.getItem("saveJob7");
+        saveJob[8]= localStorage.getItem("saveJob8");
+        // curr= localStorage.getItem("curr");
+        // for (i=0;i<9;i++){
+        //     saveJob[i]=localStorage.getItem("saveJob"+i);
+        // }
+        
         $(document).ready(function() {
-            $(".saveButt").on("click", function(){
-                var saveJob= localStorage.getItem("saveJob");
-                saveJob =$(this).prev().val();
-               // console.log(input);
-               localStorage.setItem("saveJob", saveJob);
+
+            //  var currentdate = new Date(2018, 11, 7, 19, 33, 30, 0); 
+            var currentdate = new Date();
+            var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
+            var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            $("#date").text(dayNames[currentdate.getDate()-1]+"-"+monthNames[currentdate.getMonth()-1]+" "+currentdate.getDate()+"th");  
+            var timeHour= currentdate.getHours();
+            // console.log(timeHour);
+
+            if (timeHour<9){
+                for (i=9;i<18;i++){
+                    $("#input"+i).css( "background-color","rgb(124, 236, 124)" );
+                } 
+            }else{ if (timeHour>=9 & timeHour<18) {
+                        for(i=9;i<timeHour;i++){
+                        $("#input"+i).css( "background-color","rgb(200, 210, 233)");
+                        }
+
+                        $("#input"+i).css( "background-color","rgb(241, 116, 116)" );
+                        if (saveJob[i-9]==="") {
+                            saveJob[i-9]="current";
+                            key=i-9;
+                            // console.log(curr);
+                            switch (key) {
+                                case 0:
+                                    localStorage.setItem("saveJob0",saveJob[key]);
+                                    break;
+                                case 1:
+                                    localStorage.setItem("saveJob1",saveJob[key]);
+                                    break;
+                                case 2:
+                                    localStorage.setItem("saveJob2",saveJob[key]);
+                                    break;
+                                case 3:
+                                    localStorage.setItem("saveJob3",saveJob[key]);
+                                    break;
+                                case 4:
+                                    localStorage.setItem("saveJob4",saveJob[key]);
+                                    break;
+                                case 5:
+                                    localStorage.setItem("saveJob5",saveJob[key]);
+                                    break;
+                                case 6:
+                                    localStorage.setItem("saveJob6",saveJob[key]);
+                                    break;
+                                case 7:
+                                    localStorage.setItem("saveJob7",saveJob[key]);
+                                    break;
+                                case 8:
+                                    localStorage.setItem("saveJob8",saveJob[key]);
+                                    break;
+                                }
+                            $("#input"+i).val(saveJob[i-9]);
+                        }
+                        
+                        for(j=i+1;j<18;j++){
+                            $("#input"+j).css( "background-color","rgb(124, 236, 124)" );
+                        }
+                    } else{
+                        for (i=9;i<18;i++){
+                            $("#input"+i).css( "background-color","rgb(200, 210, 233)");
+                            saveJob[i-9]="";
+                            key=i-9;
+                            switch (key) {
+                                case 0:
+                                    localStorage.setItem("saveJob0",saveJob[key]);
+                                    break;
+                                case 1:
+                                    localStorage.setItem("saveJob1",saveJob[key]);
+                                    break;
+                                case 2:
+                                    localStorage.setItem("saveJob2",saveJob[key]);
+                                    break;
+                                case 3:
+                                    localStorage.setItem("saveJob3",saveJob[key]);
+                                    break;
+                                case 4:
+                                    localStorage.setItem("saveJob4",saveJob[key]);
+                                    break;
+                                case 5:
+                                    localStorage.setItem("saveJob5",saveJob[key]);
+                                    break;
+                                case 6:
+                                    localStorage.setItem("saveJob6",saveJob[key]);
+                                    break;
+                                case 7:
+                                    localStorage.setItem("saveJob7",saveJob[key]);
+                                    break;
+                                case 8:
+                                    localStorage.setItem("saveJob8",saveJob[key]);
+                                    break;
+                                }                        
+                        } 
+                    }  
+                }
+
+            $("#saveButt1").on("click", function(){
+                saveJob[0] =$("#input9").val();
+                localStorage.setItem("saveJob0", saveJob[0]);
+            })
+            $("#input9").val(saveJob[0]);
+
+            $("#saveButt2").on("click", function(){
+                saveJob[1] =$("#input10").val();
+                localStorage.setItem("saveJob1", saveJob[1]);
+            })
+            $("#input10").val(saveJob[1]);
+
+            $("#saveButt3").on("click", function(){
+                saveJob[2] =$("#input11").val();
+                localStorage.setItem("saveJob2", saveJob[2]);
+            })
+            $("#input11").val(saveJob[2]);
+
+            $("#saveButt4").on("click", function(){
+                saveJob[3] =$("#input12").val();
+                localStorage.setItem("saveJob3", saveJob[3]);
+            })
+            $("#input12").val(saveJob[3]);
+
+            $("#saveButt5").on("click", function(){
+                saveJob[4] =$("#input13").val();
+                localStorage.setItem("saveJob4", saveJob[4]);
+            })
+            $("#input13").val(saveJob[4]);
+
+            $("#saveButt6").on("click", function(){
+                saveJob[5] =$("#input14").val();
+                localStorage.setItem("saveJob5", saveJob[5]);
+            })
+            $("#input14").val(saveJob[5]);
+
+            $("#saveButt7").on("click", function(){
+                saveJob[6] =$("#input15").val();
+                localStorage.setItem("saveJob6", saveJob[6]);
+            })
+            $("#input15").val(saveJob[6]);
+
+            $("#saveButt8").on("click", function(){
+                saveJob7 =$("#input16").val();
+                localStorage.setItem("saveJob7", saveJob[7]);
+            })
+            $("#input16").val(saveJob[7]);
+            
+            $("#saveButt9").on("click", function(){
+                saveJob[8] =$("#input17").val();
+                localStorage.setItem("saveJob8", saveJob[8]);
+            })
+            $("#input17").val(saveJob[8]);
+
+            $("#clear").on("click", function(){
+                for (i=0;i<9;i++){
+                    saveJob[i]="";
+                    key=i;
+                    switch (key) {
+                        case 0:
+                            localStorage.setItem("saveJob0",saveJob[key]);
+                            $("#input9").val(saveJob[key]);
+                            break;
+                        case 1:
+                            localStorage.setItem("saveJob1",saveJob[key]);
+                            $("#input10").val(saveJob[key]);
+                            break;
+                        case 2:
+                            localStorage.setItem("saveJob2",saveJob[key]);
+                            $("#input11").val(saveJob[key]);
+                            break;
+                        case 3:
+                            localStorage.setItem("saveJob3",saveJob[key]);
+                            $("#input12").val(saveJob[key]);
+                            break;
+                        case 4:
+                            localStorage.setItem("saveJob4",saveJob[key]);
+                            $("#input13").val(saveJob[key]);
+                            break;
+                        case 5:
+                            localStorage.setItem("saveJob5",saveJob[key]);
+                            $("#input14").val(saveJob[key]);
+                            break;
+                        case 6:
+                            localStorage.setItem("saveJob6",saveJob[key]);
+                            $("#input15").val(saveJob[key]);
+                            break;
+                        case 7:
+                            localStorage.setItem("saveJob7",saveJob[key]);
+                            $("#input16").val(saveJob[key]);
+                            break;
+                        case 8:
+                            localStorage.setItem("saveJob8",saveJob[key]);
+                            $("#input17").val(saveJob[key]);
+                            break;
+                        }                        
+                    } 
+                location.reload();
             })
         })
     </script>    

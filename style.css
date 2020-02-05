@@ -12,6 +12,7 @@ p{
     line-height: 20px;
 }
 
+
 hr {
     border: 2px solid;
     border-radius: 5px;
@@ -21,7 +22,6 @@ hr {
     margin-left: 10%;
     margin-right: 10%; 
     height: 60px;
-    background-color: red;
 }
 
 .input{
@@ -29,19 +29,12 @@ hr {
     background-color: rgb(223, 214, 214);
 }
 
-.time{
+.time, .saveButt{
     height:60px;
-    background-color: rgb(200, 210, 233); 
+    background-color:rgb(74, 157, 235) ; 
     text-align: center;
     padding: 20px;
 }
 
-.saveButt{
-    height:60px;
-    background-color: rgb(74, 157, 235); 
-    text-align: center;
-    padding: 20px;
-
-}  
 
 

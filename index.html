@@ -109,13 +109,18 @@
         
         $(document).ready(function() {
 
-            //  var currentdate = new Date(2018, 11, 7, 19, 33, 30, 0); 
+            //   var currentdate = new Date(2018, 11, 7, 16, 33, 30, 0); 
             var currentdate = new Date();
             var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
             var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
             $("#date").text(dayNames[currentdate.getDate()-1]+"-"+monthNames[currentdate.getMonth()-1]+" "+currentdate.getDate()+"th");  
             var timeHour= currentdate.getHours();
             // console.log(timeHour);
+            for (i=0;i<9;i++){
+                if (saveJob[i]==="current") {
+                    saveJob[i]="";
+                }
+            }
 
             if (timeHour<9){
                 for (i=9;i<18;i++){
